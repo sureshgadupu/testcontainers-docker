@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class DepartmentControllerIT extends BaseIT2 {
+public class DepartmentControllerIT extends BaseIT {
 
     @Test
     @Sql({ "/import.sql" })
