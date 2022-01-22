@@ -19,7 +19,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Testcontainers
-@DirtiesContext
 public  class BaseIT {
 	
 	@Autowired
