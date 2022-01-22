@@ -6,14 +6,26 @@ import dev.fullstackcode.tc.docker.entity.Employee;
 import dev.fullstackcode.tc.docker.entity.Gender;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
+import org.testcontainers.containers.DockerComposeContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
+import org.testcontainers.junit.jupiter.Container;
 
+import java.io.File;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class EmployeeControllerIT extends BaseIT {
+
+    @Container
+    private static final DockerComposeContainer environment =
+            new DockerComposeContainer(new File("src/test/resources/docker-compose.yaml"))
+                    .withExposedService("postgres", BaseIT.POSTGRES_PORT, Wait.forListeningPort())
+                    .withLocalCompose(true);
 
     @Test
     @Sql({ "/import.sql" })
@@ -52,5 +64,17 @@ public class EmployeeControllerIT extends BaseIT {
 
     }
 
+    @DynamicPropertySource
+    public static void properties(DynamicPropertyRegistry registry) {
+
+        String postgresUrl = environment.getServiceHost("postgres", POSTGRES_PORT)
+                + ":" +
+                environment.getServicePort("postgres", POSTGRES_PORT);
+
+        registry.add("spring.datasource.url", () -> "jdbc:postgresql://"+postgresUrl+"/eis");
+        registry.add("spring.datasource.username", () ->"postgres");
+        registry.add("spring.datasource.password", () ->"postgres");
+
+    }
 
 }
