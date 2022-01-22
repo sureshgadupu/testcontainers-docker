@@ -2,23 +2,14 @@ package dev.fullstackcode.tc.docker.it;
 
 
 import dev.fullstackcode.tc.docker.entity.Department;
-import dev.fullstackcode.tc.docker.entity.Employee;
-import dev.fullstackcode.tc.docker.entity.Gender;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
-import org.testcontainers.containers.DockerComposeContainer;
-import org.testcontainers.containers.wait.strategy.Wait;
-
-import java.io.File;
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class DepartmentControllerIT extends BaseIT2 {
+public class DepartmentControllerIT extends BaseIT {
 
     @Test
     @Sql({ "/import.sql" })

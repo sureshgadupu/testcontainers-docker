@@ -24,29 +24,15 @@ public  class BaseIT2 {
 	
 	@Autowired
 	protected TestRestTemplate testRestTemplate ;
-
 	private static int POSTGRES_PORT = 5432;
 
 	private static Map<String,String> postgresEnvMap = new HashMap<>();
 
-	static final  DockerComposeContainer environment;
-
-	static {
-		environment =
+	@Container
+	private static final  DockerComposeContainer environment =
 			new DockerComposeContainer(new File("src/test/resources/docker-compose.yaml"))
 					.withExposedService("postgres", POSTGRES_PORT, Wait.forListeningPort())
-					.withLocalCompose(true)
-					;
-
-		environment.start();
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> stopContainer()));
-
-	}
-
-	private static void stopContainer() {
-		environment.stop();
-	}
-
+					.withLocalCompose(true);
 
 	@DynamicPropertySource
 	public static void properties(DynamicPropertyRegistry registry) {

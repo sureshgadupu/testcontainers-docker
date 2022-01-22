@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class EmployeeControllerIT extends BaseIT2 {
+public class EmployeeControllerIT extends BaseIT {
 
     @Test
     @Sql({ "/import.sql" })
