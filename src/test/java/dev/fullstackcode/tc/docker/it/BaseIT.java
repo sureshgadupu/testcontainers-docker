@@ -26,37 +26,5 @@ public  class BaseIT {
 
 	protected static int POSTGRES_PORT = 5432;
 
-	private static Map<String,String> postgresEnvMap = new HashMap<>();
 
-//	static final  DockerComposeContainer environment;
-
-//	static {
-//		environment =
-//			new DockerComposeContainer(new File("src/test/resources/docker-compose.yaml"))
-//					.withExposedService("postgres", POSTGRES_PORT, Wait.forListeningPort())
-//					.withLocalCompose(true)
-//					;
-//
-//		environment.start();
-//		Runtime.getRuntime().addShutdownHook(new Thread(() -> stopContainer()));
-//
-//	}
-
-//	private static void stopContainer() {
-//		environment.stop();
-//	}
-
-
-//	@DynamicPropertySource
-//	public static void properties(DynamicPropertyRegistry registry) {
-//
-//		 String postgresUrl = environment.getServiceHost("postgres", POSTGRES_PORT)
-//				+ ":" +
-//				environment.getServicePort("postgres", POSTGRES_PORT);
-//
-//		registry.add("spring.datasource.url", () -> "jdbc:postgresql://"+postgresUrl+"/eis");
-//		registry.add("spring.datasource.username", () ->"postgres");
-//		registry.add("spring.datasource.password", () ->"postgres");
-//
-//	}
 }
