@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-//classes = {PostgresContainerConfiguration.class}
+
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Testcontainers
 public  class BaseIT {
